@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/galleryFragment">
+
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.abdull.imagesearchapp.ui.gallery.GalleryFragment"
+        android:label="Gallery"
+        tools:layout="@layout/fragment_gallery">
+        <action
+            android:id="@+id/action_galleryFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.abdull.imagesearchapp.ui.details.DetailsFragment"
+        android:label="Photo Details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="photo"
+            app:argType="com.codinginflow.imagesearchapp.data.remote.UnsplashPhoto" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/savedGalleryFragment"
+        android:name="com.abdull.imagesearchapp.ui.saved.SavedGalleryFragment"
+
+        tools:layout="@layout/fragment_saved_gallery"
+        >
+        <argument android:name="collection"
+            app:argType="com.codinginflow.imagesearchapp.data.local.Collection"/>
+        <action
+            android:id="@+id/action_savedGalleryFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.abdull.imagesearchapp.ui.collection.CollectionFragment"
+        android:label="Collection"
+        tools:layout="@layout/fragment_collection" >
+        <action
+            android:id="@+id/action_collectionFragment_to_savedGalleryFragment"
+            app:destination="@id/savedGalleryFragment" />
+    </fragment>
+</navigation>
